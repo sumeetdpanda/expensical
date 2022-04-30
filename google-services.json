@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "652359312131",
+    "project_id": "expensical",
+    "storage_bucket": "expensical.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652359312131:android:8edc0860d0cf36ca78ff36",
+        "android_client_info": {
+          "package_name": "com.thetechbears.expensical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652359312131-ngckrm3rucvohlldo5s28a11sano2nvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thetechbears.expensical",
+            "certificate_hash": "14796dbc91dd7473afd4ae796d1a7f5eacf35c79"
+          }
+        },
+        {
+          "client_id": "652359312131-lrrqase992cld5k088mqecc0p4cj7fai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuYdVRtlDNUhtXT1N-RK2VIIOTo8OUE9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652359312131-lrrqase992cld5k088mqecc0p4cj7fai.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
