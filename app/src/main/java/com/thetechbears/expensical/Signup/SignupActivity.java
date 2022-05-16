@@ -14,9 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.thetechbears.expensical.Dashboard;
-import com.thetechbears.expensical.MainActivity;
 import com.thetechbears.expensical.R;
 
 public class SignupActivity extends AppCompatActivity {
@@ -53,13 +51,12 @@ public class SignupActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        User user = new User(emailStr, nameStr);
+                                        user.writeData();
                                         Intent i = new Intent(SignupActivity.this, Dashboard.class);
                                         startActivity(i);
                                         finish();
                                     } else {
-                                        // If sign in fails, display a message to the user.
                                         Toast.makeText(SignupActivity.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
                                     }

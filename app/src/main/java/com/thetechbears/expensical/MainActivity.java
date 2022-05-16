@@ -7,15 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.thetechbears.expensical.Login.LoginActivity;
 import com.thetechbears.expensical.Signup.SignupActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
 
         Button loginButton, signupButton;
 
@@ -39,5 +45,16 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser!=null){
+            startActivity(new Intent(MainActivity.this, Dashboard.class));
+            finish();
+        }
     }
 }

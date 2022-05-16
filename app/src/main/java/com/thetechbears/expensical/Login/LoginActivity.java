@@ -1,5 +1,6 @@
 package com.thetechbears.expensical.Login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.thetechbears.expensical.Dashboard;
@@ -37,10 +41,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String usernameStr = username.getText().toString();
                 String passwordStr = password.getText().toString();
-                Intent intent = new Intent(LoginActivity.this, Dashboard.class);
-                startActivity(intent);
-                finish();
+                mAuth.signInWithEmailAndPassword(usernameStr, passwordStr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            startActivity(new Intent(LoginActivity.this, Dashboard.class));
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(LoginActivity.this, "Please check your credentials", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser!=null){
+            startActivity(new Intent(LoginActivity.this, Dashboard.class));
+            finish();
+        }
     }
 }
